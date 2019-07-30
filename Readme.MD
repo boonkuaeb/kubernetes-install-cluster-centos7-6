@@ -136,18 +136,15 @@ systemctl  restart kubelet && systemctl enable kubelet
 Run the beneath command to  initialize and setup `ct-kmaster1`.
 
 ```
-kubeadm init
+kubeadm init --pod-network-cidr=192.168.0.0/16 --apiserver-advertise-address={public_IP}
 ```
+
 
 ```
 kubeadm join 10.24.10.47:6443 --token igf8jj.xz2i2yc0fbukzm4s \
     --discovery-token-ca-cert-hash sha256:bfae1c209ccf3026f3ec485a1d76aef4443f15aba3a2b75d920742ec24eb3557
 ```
 
-```
-export KUBECONFIG=/etc/kubernetes/admin.conf
-
-```
 To make kubectl work for your non-root user, run these commands, which are also part of the kubeadm init output:
 
 ```
@@ -175,7 +172,7 @@ export kubever=$(kubectl version | base64 | tr -d '\n')
 ```
 
 ```
-kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$kubever"
+kubectl apply -f https://docs.projectcalico.org/v3.8/manifests/calico.yaml
 ```
 
 
