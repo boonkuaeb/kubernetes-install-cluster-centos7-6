@@ -136,7 +136,7 @@ systemctl  restart kubelet && systemctl enable kubelet
 Run the beneath command to  initialize and setup `ct-kmaster1`.
 
 ```
-kubeadm init --pod-network-cidr=192.168.0.0/16 --apiserver-advertise-address={public_IP}
+kubeadm init --pod-network-cidr=192.168.0.0/16 --apiserver-advertise-address={Local_IP}
 ```
 
 
